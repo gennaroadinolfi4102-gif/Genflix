@@ -1,0 +1,136 @@
+body {
+    background-color: #141414;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    /* Rimosso overflow-x hidden per permettere lo scroll delle righe */
+}
+
+/* Fix per Mobile: impedisce il 'tap highlight' grigio su iOS */
+.touch-hover-fix * {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Navbar */
+#mainNav {
+    transition: background-color 0.4s;
+    padding: 1rem 4%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+    z-index: 1000;
+}
+#mainNav.scrolled { background-color: #141414; }
+
+/* Hero Section */
+.hero-section {
+    height: 75vh;
+    background: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1600&q=80') center/cover;
+    position: relative;
+}
+.hero-overlay {
+    height: 100%; width: 100%;
+    background: linear-gradient(to right, #141414 10%, transparent 70%),
+                linear-gradient(to top, #141414 5%, transparent 30%);
+}
+
+/* --- NUOVA LOGICA OVERLAY PER MOVIE CARDS --- */
+
+.movie-carousel {
+    overflow-x: auto;
+    /* Importante: visible permette alla card ingrandita di non essere tagliata */
+    overflow-y: visible; 
+    padding: 30px 4%; /* Padding verticale per l'ingrandimento */
+    scroll-behavior: smooth;
+    -ms-overflow-style: none; scrollbar-width: none; /* Nasconde scrollbar */
+}
+.movie-carousel::-webkit-scrollbar { display: none; }
+
+/* Contenitore principale della card */
+.movie-item {
+    position: relative;
+    min-width: 200px; /* Dimensione base */
+    height: 300px; /* Poster verticale stile Netflix */
+    transition: transform 0.4s ease, z-index 0.4s ease;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden; /* Mantiene tutto dentro i bordi arrotondati */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* Immagine del film */
+.movie-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+}
+
+/* --- PANNELLO DETTAGLI IN OVERLAY (Sopra l'immagine) --- */
+.movie-details {
+    position: absolute;
+    /* Copre tutta la card */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Sfondo scuro sfumato per leggere il testo */
+    background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.1) 100%);
+    
+    /* Allinea il contenuto in basso */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 15px;
+    
+    /* Stato iniziale: invisibile */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 2;
+}
+
+/* --- STATO HOVER / ACTIVE (Aggiunto via JS per mobile) --- */
+/* Quando il mouse è sopra O quando viene toccato (classe .active aggiunta da JS) */
+.movie-item:hover,
+.movie-item.active {
+    transform: scale(1.15); /* Ingrandimento leggero ed elegante */
+    z-index: 10; /* Primo piano */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+}
+
+/* Mostra i dettagli nell'overlay */
+.movie-item:hover .movie-details,
+.movie-item.active .movie-details {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Opzionale: scurisce leggermente l'immagine sotto */
+.movie-item:hover .movie-poster,
+.movie-item.active .movie-poster {
+    opacity: 0.7;
+}
+
+/* Elementi interni */
+.card-icon-btn {
+    width: 40px; height: 40px;
+    border: 2px solid rgba(255,255,255,0.7);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 1.3rem;
+    background: rgba(0,0,0,0.5);
+    margin-right: 10px; padding: 0;
+}
+.card-icon-btn.play-btn {
+    background-color: white; color: black; border-color: white;
+}
+
+.movie-meta { font-size: 0.85rem; font-weight: bold; margin-bottom: 5px;}
+.match-score { color: #46d369; margin-right: 10px;}
+.age-rating { border: 1px solid rgba(255,255,255,0.4); padding: 0 5px; border-radius: 2px;}
+
+/* Altro */
+.profile-icon { width: 32px; height: 32px; background-color: #e50914; border-radius: 4px; }
+.spinner-border-custom { animation: pulse 1.5s infinite; }
+@keyframes pulse { 0% { opacity: 0.5; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1); } 100% { opacity: 0.5; transform: scale(0.9); } }

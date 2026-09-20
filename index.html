@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genflix - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="touch-hover-fix bg-black text-white">
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container-fluid">
+            <a class="navbar-brand text-danger fw-bold fs-3" href="index.html">GENFLIX</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Serie TV</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Film</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning fw-bold" href="preferiti.html">La mia lista ⭐</a></li>
+                </ul>
+                <div class="profile-icon"></div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section" id="heroSection">
+        <div class="hero-overlay d-flex align-items-center">
+            <div class="container hero-content">
+                <h1 class="display-1 fw-bold" id="heroTitle">Caricamento...</h1>
+                <p class="lead w-50 d-none d-md-block" id="heroDesc"></p>
+                <div class="mt-4">
+                    <button class="btn btn-light btn-lg me-2 fw-bold">
+                        <i class="bi bi-play-fill"></i> Riproduci
+                    </button>
+                    <button class="btn btn-secondary btn-lg fw-bold bg-opacity-50">
+                        <i class="bi bi-info-circle"></i> Altre info
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-5">
+        <section class="movie-row container-fluid">
+            <h5 class="mb-3 px-4">I più popolari su Genflix</h5>
+            <div class="d-flex gap-2 movie-carousel" id="popularRow">
+                </div>
+        </section>
+
+        <section class="movie-row container-fluid mt-5">
+            <h5 class="mb-3 px-4">Serie TV di tendenza</h5>
+            <div class="d-flex gap-2 movie-carousel" id="trendingRow">
+                </div>
+        </section>
+    </main>
+
+    <footer class="text-secondary text-center py-4 border-top border-secondary mt-5">
+        <p>&copy; 2026 Genflix Italia</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
